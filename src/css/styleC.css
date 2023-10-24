@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: lightgray;
+    width: 100%;
+}
+
+p.title {
+    background-color: red;
+    color: rgb(104, 224, 104);
+    width: 99%;
+    padding: 10px;
+    text-align: center;
+    text-indent: 0%;
+}
+
+footer {
+    margin: 0;
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+header {
+    color: white;
+    font-size: 25px;
+
+    text-decoration-line: none;
+}
+
+.msg {
+    width: 150vh;
+    height: 18vh;
+    border: 0;
+    align-self: auto;
+}
+
+.btn {
+    font-size: 24px;
+    width: 30vh;
+}
+
+.btn:hover {
+    background-color: red;
+    color: white;
+}
+
+p {
+    font-size: 30px;
+}
+
+.inter {
+    font-size: 32px;
+}
+
+.conts {
+    font-size: 32px;
+}
+
+input {
+    margin: 5px;
+    padding: 5px;
+    font-size: 29px;
+}
+.header{
+    color: white;
+}

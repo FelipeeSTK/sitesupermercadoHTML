@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contatos</title>
+    <link rel="stylesheet" href="./src/css/styleC.css">
+</head>
+
+<body>
+    <header >
+        <div class="header">
+        <a href="index.html">Início</a>
+        <a href="cont.html">Contatos</a>
+    </div>
+    </header>
+    <p class="title"><img src="./src/imagens/logo1.png" alt="logo" width="900" height="150"></p>
+
+    <h1>Nossa empresa, está localizada na Rua Alegre, nº 123 - Cidade Brasileira.</h1>
+    <p class="inter">Para entrar em contato com nossa equipe, utilize os meios a seguir:</p>
+    <p class="conts">Telefone/WhatsApp: (12) 3456-7890</p>
+    <p class="conts">E-mail: comercialSM@ecommerce.com</p><br><br>
+
+    <p class="inter">Caso deseje nos enviar uma mensagem neste momento, digite sua dúvida, sugestão ou reclamação
+        abaixo. Assim que possível iremos responder sua mensagem.</p><br><br><br><br>
+
+    <div class="mensagem">
+        <input class="msg" type="text" placeholder="Digite sua mensagem aqui..." name="msg"></input><br><br><br>
+        <button class="btn" id="enviarButton" onclick="enviar()">ENVIAR MENSAGEM</button><br><br><br>
+        <p class="inter">Agradecemos a preferência.</p>
+        <p class="resp" id="resp"></p>
+    </div>
+
+    <script>
+        function enviar() {
+            var email = prompt("Digite seu email para confirmar: ");
+            if (email !== null) {
+                alert("Mensagem enviada com sucesso!");
+                window.location.href = "index.html";
+            }
+
+
+        };
+    </script>
+
+    <footer>
+        <p>&copy; Supermercado Kwik-E-Mart. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+
+</html>

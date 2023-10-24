@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermercado Comercial SM</title>
+    <link rel="stylesheet" href="./src/css/style.css">
+</head>
+
+<body>
+    <header>
+        <a href="index.html">Início</a>
+        <a href="cont.html">Contatos</a>
+    </header>
+
+    <p class="title"><img src="./src/imagens/logo1.png" alt="logo" width="900" height="150"></p>
+    <h1 class="intr">Olá! Bem vindos ao Comercial SM, aproveitem nossas ofertas.</h1>
+    <div class="carrinho-container">
+        <!-- JavaScript irá popular os produtos aqui -->
+    </div>
+
+    <p class="carr">Carrinho <img src="./src/imagens/carrinho.png" alt="" width="30" height="30"></p>
+    <div id="carrinho">
+        <!-- JavaScript irá popular os itens do carrinho aqui -->
+    </div>
+
+    <footer>
+        <p>&copy; Supermercado Kwik-E-Mart. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Dados dos produtos
+        var itens = [
+            { nome: 'Acém Bovino 1KG', imagem: './src/imagens/produtos/acem.png', preço: '21.90' },
+            { nome: 'Asinha Frango 1KG', imagem: './src/imagens/produtos/asinha.png', preço: '10.99'},
+            { nome: 'Bisteca Suína KG', imagem: './src/imagens/produtos/bisteca.png', preço: '12.99'},
+            { nome: 'Coca Cola lt 350ml', imagem:  './src/imagens/produtos/coca.png', preço: '2.99'},
+            { nome: 'Costela Bovina 1KG', imagem:  './src/imagens/produtos/costela.png', preço: '17.49'},
+            { nome: 'Cerveja Duff 350ml', imagem:  './src/imagens/produtos/duff.png', preço: '5.90'},
+            { nome: 'Cerv Heineken Ln 330ml', imagem: './src/imagens/produtos/heineken.png', preço: '4.99'},
+            { nome: 'Kit Refrigerante 2L', imagem: './src/imagens/produtos/kit.png', preço: '16.99'},
+            { nome: 'Linguiça Toscana 1KG', imagem: './src/imagens/produtos/linguiça.png', preço: '12.99'},
+            { nome: 'Coxa Sobrecoxa 1KG', imagem: './src/imagens/produtos/sobrecoxa.png', preço: '6.99'},
+            { nome: 'Toucinho 1KG', imagem: './src/imagens/produtos/toucinho.png', preço: '9.90'},
+            { nome: 'Vinho Espanhol 750ml', imagem: './src/imagens/produtos/vinho.png', preço: '69.90'},
+            { nome: 'Wh Red Label 750ml', imagem: './src/imagens/produtos/wh.png', preço: '59.90'},
+            { nome: 'Banana Nanica 1KG', imagem: './src/imagens/p2/BananaNanica.png', preço: '11.90'},
+            { nome: 'Biscoito 3 Queijos 1KG', imagem: './src/imagens/p2/biscoito_3qjs.png', preço: '12.90'},
+            { nome: 'Biscoito Frito 1KG', imagem: './src/imagens/p2/biscoito_frito.png', preço: '16.99'},
+            { nome: 'Laranja FD 1KG', imagem: './src/imagens/p2/laranja.png', preço: '4.90'},
+            { nome: 'Linguiça Calabresa 1KG', imagem: './src/imagens/p2/ling.png', preço: '19.90'},
+            { nome: 'Melancia Pic 1KG', imagem: './src/imagens/p2/melancia.png', preço: '8.90'},
+            { nome: 'Mortadela Def 1KG', imagem: './src/imagens/p2/mort.png', preço: '19.99'},
+            { nome: 'Mussarela Emb 1KG', imagem: './src/imagens/p2/muss.png', preço: '31.90'},
+            { nome: 'Presunto Cozido emb 1KG', imagem: './src/imagens/p2/presunto.png', preço: '21.99'},
+            { nome: 'Requeijão 420g', imagem: './src/imagens/p2/req.png', preço: '11.99'},
+            { nome: 'Salsicha pct 1KG', imagem: './src/imagens/p2/sals.png', preço: '9.90'},
+            { nome: 'Uva Rubi 500g', imagem: './src/imagens/p2/UvaRubi.png', preço: '8.90'},
+            { nome: 'Torta Recheada 1Kg', imagem: './src/imagens/p2/tortas.png', preço: '39.90'}
+            // ... Outros produtos ...
+        ];
+
+        var carrinho = {};
+
+        // Função para adicionar um item ao carrinho
+        function adicionarAoCarrinho(idProduto) {
+            if (!carrinho[idProduto]) {
+                carrinho[idProduto] = { quantidade: 1, nome: itens[idProduto].nome, preço: itens[idProduto].preço };
+            } else {
+                carrinho[idProduto].quantidade++;
+            }
+            atualizarCarrinho();
+        }
+
+        // Função para atualizar o carrinho na página
+        function atualizarCarrinho() {
+            var carrinhoDiv = document.querySelector('#carrinho');
+            carrinhoDiv.innerHTML = '';
+            var totalQuantidade = 0;
+            var totalPreco = 0;
+
+            for (var key in carrinho) {
+                if (carrinho.hasOwnProperty(key)) {
+                    var item = carrinho[key];
+                    var itemDiv = document.createElement('div');
+                    itemDiv.className = 'carrinho-item';
+                    itemDiv.innerHTML = `
+                    Item: ${item.nome} | Quantidade: ${item.quantidade} | Preço: R$ ${(item.quantidade * item.preço).toFixed(2)} |
+                    <a href="javascript:void(0);" onclick="removerDoCarrinho(${key})">Remover Item</a><hr>
+                `;
+                    carrinhoDiv.appendChild(itemDiv);
+                    totalQuantidade += item.quantidade;
+                    totalPreco += item.quantidade * item.preço;
+                }
+            }
+
+            var totalDiv = document.createElement('div');
+            totalDiv.className = 'total';
+            totalDiv.innerHTML = `
+            <p>Quantidade de itens: ${totalQuantidade}</p><hr>
+            <p>Total a Pagar: R$ ${totalPreco.toFixed(2)}</p>
+        `;
+            carrinhoDiv.appendChild(totalDiv);
+        }
+
+        // Função para remover um item do carrinho
+        function removerDoCarrinho(idProduto) {
+            if (carrinho[idProduto]) {
+                carrinho[idProduto].quantidade--;
+                if (carrinho[idProduto].quantidade === 0) {
+                    delete carrinho[idProduto];
+                }
+                atualizarCarrinho();
+            }
+        }
+
+        // Carregar produtos na página
+        var carrinhoContainer = document.querySelector('.carrinho-container');
+        itens.forEach(function (item, index) {
+            var produtoDiv = document.createElement('div');
+            produtoDiv.className = 'produto';
+            produtoDiv.innerHTML = `
+                <img src="${item.imagem}" />
+                <a class="produto-link" href="javascript:void(0);" onclick="adicionarAoCarrinho(${index})">Adicionar ao carrinho</a>
+            `;
+            carrinhoContainer.appendChild(produtoDiv);
+        });
+
+        // Carregar o carrinho na página
+        atualizarCarrinho();
+    </script>
+</body>
+
+</html>
